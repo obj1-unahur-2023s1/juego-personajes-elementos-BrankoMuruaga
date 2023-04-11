@@ -13,8 +13,10 @@ object floki {
 	var property arma
 	
 	method encontrar(elemento) {
-		elemento.recibirAtaque(arma.potencia())
-		arma.registrarUso()
+		if(arma.estaCagada()){
+			elemento.recibirAtaque(arma.potencia())
+			arma.registrarUso()
+		}
 	}
 }
 
@@ -41,33 +43,33 @@ object ballesta {
 	var property flechas = 10
 	
 	method potencia() {
-		if(flechas > 0){
-			return 4		
-		}
-		else {
-			return 0
-		}
+		return 4		
+		
 	}
 	
 	method registrarUso() {
 		flechas -= 1
 	}
+	
+	method estaCagada() {
+		return flechas > 0
+	}
 }
 
 object jabalina {
-	var property estaCargada = true
+	var estaCargada = true
 	
 	method potencia() {
-		if(estaCargada){
-			return 30		
-		}
-		else {
-			return 0
-		}
+		return 30		
+		
 	}
 	
 	method registrarUso() {
 		estaCargada = false
+	}
+	
+	method estaCagada() {
+		return estaCargada
 	}
 }
 
@@ -86,7 +88,7 @@ object castillo {
 	}
 	
 	method recibirAtaque(ataque) {
-		defensa -= ataque
+		defensa -= (defensa - ataque).max(defensa)
 	}
 	
 	method altura() {
@@ -102,7 +104,6 @@ object aurora {
 	}
 	
 	method valorQueRecibe() {
-		
 	}
 	
 	method recibirAtaque(ataque) {
