@@ -48,7 +48,7 @@ object ballesta {
 	}
 	
 	method registrarUso() {
-		flechas -= 1
+		flechas = (flechas - 1).max(0)
 	}
 	
 	method estaCagada() {
