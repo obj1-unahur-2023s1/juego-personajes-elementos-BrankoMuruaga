@@ -1,4 +1,8 @@
-import jugadoresPersonajes.*
+import jugador.*
+import Personajes.*
+import elementos.*
+import armas.*
+
 
 
 
@@ -9,9 +13,10 @@ test "Test 1" {
 	luisa.aparece(castillo)
 	
 	
-	assert.that(mario.valorRecolectado() == 45)
+	assert.equals(45, mario.valorRecolectado())
 	assert.that(mario.esFeliz())
-	assert.that(castillo.defensa() == 170)
+	assert.equals(170, castillo.defensa())
+	assert.equals(castillo, mario.elementoEncontrado())
 
 }
 
@@ -23,7 +28,7 @@ test "Test 2" {
 	luisa.aparece(aurora)
 	luisa.aparece(castillo)
 	
-	assert.that(mario.valorRecolectado() == 16)
+	assert.equals(16, mario.valorRecolectado())
 	assert.that(tipa.altura() == 9)
 	assert.that(!mario.esFeliz())
 	assert.that(!aurora.estaViva())
@@ -40,7 +45,7 @@ test "Test 3" {
 	assert.that(mario.valorRecolectado() == 0)
 	assert.that(aurora.estaViva())
 	assert.that(castillo.defensa() == 146)
-	assert.that(ballesta.flechas() > 0)
+	assert.that(ballesta.estaCargada())
 	
 	
 }
